@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Dots;
 
 namespace Dots.Utils
 {
@@ -9,8 +10,7 @@ namespace Dots.Utils
         public static void SaveProgress(int scores)
         {
             BinaryFormatter binaryFormatter = new BinaryFormatter();
-            string path = Application.persistentDataPath + "/save.dobro";
-            FileStream stream = new FileStream(path, FileMode.Create);
+            FileStream stream = new FileStream(GloalConstants.SavePath, FileMode.Create);
 
             ProgressData progressData = new ProgressData(scores);
             binaryFormatter.Serialize(stream, progressData);
@@ -19,11 +19,10 @@ namespace Dots.Utils
 
         public static ProgressData LoadProgress ()
         {
-            string path = Application.persistentDataPath + "/save.dobro";
-            if (File.Exists(path))
+            if (File.Exists(GloalConstants.SavePath))
             {
                 BinaryFormatter binaryFormatter = new BinaryFormatter();
-                FileStream stream = new FileStream(path, FileMode.Open);
+                FileStream stream = new FileStream(GloalConstants.SavePath, FileMode.Open);
 
                 ProgressData data = binaryFormatter.Deserialize(stream) as ProgressData;
                 stream.Close();

@@ -34,6 +34,11 @@
         ///     The scores for square destroyed
         /// </summary>
         public const int SquareScores = 15;
+
+        /// <summary>
+        ///     The save game path
+        /// </summary>
+        public const string SavePath = Application.persistentDataPath + "/save.dobro";
     }
 
     /// <summary>
